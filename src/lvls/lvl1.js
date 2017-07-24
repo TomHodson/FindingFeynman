@@ -28,7 +28,7 @@ var Level1 = fabric.util.createClass(Page, {
 
   enter: function(){
 
-      this.assets.line2 = new fabric.Line([50, 50, 100, 100], {
+    this.assets.line2 = new fabric.Line([50, 50, 100, 100], {
     fill: 'black',
     stroke: 'black',
     strokeWidth: 1,

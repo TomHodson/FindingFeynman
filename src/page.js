@@ -65,8 +65,8 @@ var StartPage = fabric.util.createClass(Page, {
 
   formatAssets: function() {
     this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
-    console.log(this.assets.FFlogo);
 
+    /*
     if (this.global.canvas.getWidth() > this.assets.FFlogo.width*2) {
       this.assets.FFlogo.scale(2);
       this.assets.FFlogo.set({
@@ -80,12 +80,19 @@ var StartPage = fabric.util.createClass(Page, {
         top: 0-this.assets.FFlogo.height*0.1*(this.global.canvas.getWidth()/this.assets.FFlogo.width),
       });
     }
+    */
+    this.assets.FFlogo.scaleToHeight(global.canvas.height*2/3);
+    this.assets.FFlogo.set({originX: 'center',
+                            top : 0,
+                            left : this.global.canvas.width/2,
+                          });
 
-    this.assets.startButton.scale(this.global.canvas.getWidth());
-    this.assets.startButton.scale(0.5);
+    this.assets.startButton.scaleToHeight(global.canvas.height/10);
     this.assets.startButton.set({
-      top: this.global.canvas.getHeight()*0.8-this.assets.startButton.height*0.5,
-      left: this.global.canvas.getWidth()*0.5-this.assets.startButton.width*0.25,
+      originX: 'center',
+      originY: 'center',
+      top: global.canvas.height * 4/5,
+      left: global.canvas.width / 2,
     });
 
     for (var a in this.assets) {
