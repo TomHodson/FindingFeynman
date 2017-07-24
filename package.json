@@ -4,7 +4,9 @@
   "description": "A game about particle physics",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "postinstall": "grunt",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
