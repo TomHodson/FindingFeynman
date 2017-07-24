@@ -36,8 +36,12 @@ function main() {
   window.global = {};
   var global = window.global;
   global.canvas = new fabric.Canvas('canvas');
-  global.canvas.setWidth(window.innerWidth);
-  global.canvas.setHeight(window.innerHeight);
+  global.canvas.setWidth((window.innerWidth > 0) ? window.innerWidth : screen.width);
+  global.canvas.setHeight((window.innerHeight > 0) ? window.innerHeight : screen.height);
+  global.canvas.calcOffset();
+
+
+  console.log("canvas has dimensions width:", global.canvas.width, "height:", global.canvas.height);
 
   global.assets = {};
   global.pages = {};

@@ -66,31 +66,15 @@ var StartPage = fabric.util.createClass(Page, {
   formatAssets: function() {
     this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
 
-    /*
-    if (this.global.canvas.getWidth() > this.assets.FFlogo.width*2) {
-      this.assets.FFlogo.scale(2);
-      this.assets.FFlogo.set({
-        top: 0-this.assets.FFlogo.height*0.1*2.0,
-        left: this.global.canvas.getWidth()*0.5-this.assets.FFlogo.width*2.0*0.5,
-      });
-      console.log("canvas too big!");
-    } else {
-      this.assets.FFlogo.scaleToWidth(this.global.canvas.getWidth());
-      this.assets.FFlogo.set({
-        top: 0-this.assets.FFlogo.height*0.1*(this.global.canvas.getWidth()/this.assets.FFlogo.width),
-      });
-    }
-    */
-    this.assets.FFlogo.scaleToHeight(global.canvas.height*2/3);
-    this.assets.FFlogo.set({originX: 'center',
-                            top : 0,
+    this.assets.FFlogo.scale(Math.min(2/3*global.canvas.height/this.assets.FFlogo.height, 1.0*global.canvas.width/this.assets.FFlogo.width));
+    this.assets.FFlogo.set({originX: 'center', originY: 'center',
+                            top : this.global.canvas.height/3,
                             left : this.global.canvas.width/2,
                           });
 
-    this.assets.startButton.scaleToHeight(global.canvas.height/10);
+    this.assets.startButton.scale(Math.min(1/10*global.canvas.height/this.assets.startButton.height, 0.7*global.canvas.width/this.assets.startButton.width));
     this.assets.startButton.set({
-      originX: 'center',
-      originY: 'center',
+      originX: 'center', originY: 'center',
       top: global.canvas.height * 4/5,
       left: global.canvas.width / 2,
     });
