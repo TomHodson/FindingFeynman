@@ -93,7 +93,7 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     }
     //if there are still assets left to load
     else {
-      fabric.loadSVGFromURL("assets/" + asset.url, function(objs, opt) {
+      fabric.loadSVGFromURL("dist/assets/" + asset.url, function(objs, opt) {
         console.log("loaded asset " + asset.name);
         var object = fabric.util.groupSVGElements(objs, opt);
         
@@ -102,7 +102,7 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
 
         //this is the recursive part
         recurse_on_assets(global, assets_to_load);
-      });}  
+      });}
   }
   recurse_on_assets(global, global.assets_to_load);
 }
