@@ -65,6 +65,7 @@ var StartPage = fabric.util.createClass(Page, {
 
   formatAssets: function() {
     this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
+    console.log(this.assets.FFlogo);
 
     if (this.global.canvas.getWidth() > this.assets.FFlogo.width*2) {
       this.assets.FFlogo.scale(2);

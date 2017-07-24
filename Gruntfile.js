@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       },
       dist: {
         // the files to concatenate
-        src: ['src/main.js', 'src/page.js', 'src/smPage.js', 'src/lvls/*.js'],
+        src: ['src/**/*.js'],
         //src: ['src/**/*.js'],
         // the location of the resulting JS file
         dest: 'dist/<%= pkg.name %>.js'
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
+      tasks: ['jshint', 'concat', 'uglify']
     },
     
     svgmin: {
