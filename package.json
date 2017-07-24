@@ -20,6 +20,10 @@
     "url": "https://github.com/lilhuang/FindingFeynman/issues"
   },
   "homepage": "https://github.com/lilhuang/FindingFeynman#readme",
+  
+  "Dependencies" : {
+    "express": "^4.15.3",
+  },
   "devDependencies": {
     "connect": "^3.6.2",
     "express": "^4.15.3",
