@@ -20,13 +20,7 @@
     "url": "https://github.com/lilhuang/FindingFeynman/issues"
   },
   "homepage": "https://github.com/lilhuang/FindingFeynman#readme",
-  
-  "Dependencies" : {
-    "express": "^4.15.3",
-  },
   "devDependencies": {
-    "connect": "^3.6.2",
-    "express": "^4.15.3",
     "grunt": "^0.4.5",
     "grunt-concat-sourcemap": "^0.4.3",
     "grunt-contrib-concat": "^1.0.1",
@@ -35,5 +29,8 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-svgmin": "^4.0.0",
     "serve-static": "^1.12.3"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
   }
 }
