@@ -1,5 +1,10 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_script:
-  - npm install grunt-cli -g
+- npm install grunt-cli -g
+deploy:
+  provider: heroku
+  app: findingfeynman
+  api_key:
+    secure: jvpX7bW2en4rTKBbzqzftXNn0Nf1+Sk7xVLwMeRJ3iK6efUr47FjY0dbS+H10+f6C4WunL5YLeOHT0/hY5+yZlmCCx0MWE+0B0UHKyE7LcfS4EgNp4g/e1eveo/ABy3dwFMGPwoQh5/E22fnoxjTwPto2kgdlodHSmER89Le6hb3z6NIxZm5TlWxsnTO4nSUVb5M/xlQoLG0An1LRF/yBxLA/CNwaHwea+3KllTnxM8m6DqQflWj/0mjgxW0BCrao5fYfIU8oyjaBhCUR4fB/OpiP4LrAUd/FoHDtkwmxawrVZYnJ68NMPHAld78EoOydixC+fOPeoOLqAK9EYbjag24VeGcxVrjleGNB0Q24PqU5Vj3vRWvplSicDyqfeagiKN0fCw4EoOKegthiP7px+0HLDdZ2/8wNh+bybNwDoCiqJO5tLApbHpZ/4uES1LU8JCurZrxjFPar5RZVGomn3xh5eCNsdZPWAowOcEJX3tM6NnzO0kiIeBs7J6b84d2aX8OOsfi8ofOYH3sROk8tTuhtfArM6xXY1nbcU6AqfJAwr/aYNFdx9JaYS8hF6zq/qq9i1tfNnKMogEE3/khNnsy1zf3zRakTkIx8/IUTtUi+kdNd6jyPml1UaunzRO1EIAKMBzRUmoQuILEonZmBRrcPgk7xIiXPQDIE2kBdJw=
