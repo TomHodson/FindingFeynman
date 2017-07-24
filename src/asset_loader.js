@@ -51,8 +51,16 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     {url: "SquiggleIcon.svg", name: "squiggle"},
     ];
 
-    var loadBar = new fabric.Rect({left: global.canvas.width*0.01, originY: 'center', fill: 'orange', width: 1, height: global.canvas.height/10});
-    var bg = new fabric.Rect({originY: 'center', fill: 'black', width: global.canvas.width*0.29, height: global.canvas.height/8});
+    var width = 0.3*Math.min(global.canvas.width, global.canvas.height);
+    var height = width/10;
+    var pad = width/10;
+
+    var loadBar = new fabric.Rect({originY: 'center', fill: 'orange',
+                                    left: pad, height: height, width: width,
+                                    });
+    var bg = new fabric.Rect({originY: 'center', fill: 'black',
+                        width: width+2*pad, height: height+pad*2,
+                            });
     var bar = new fabric.Group([bg, loadBar]);
     global.canvas.add(bar);
     bar.center();

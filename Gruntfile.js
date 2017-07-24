@@ -22,12 +22,12 @@ module.exports = function(grunt) {
     concat: {
       options: {
         // define a string to put between each file in the concatenated output
-        separator: ';',
+        separator: '\n',
         sourceMap : true,
       },
       dist: {
         // the files to concatenate
-        src: ['src/**/*.js'],
+        src: ['src/*.js', "src/lvls/*.js"],
         //src: ['src/**/*.js'],
         // the location of the resulting JS file
         dest: 'dist/<%= pkg.name %>.js'
@@ -36,14 +36,23 @@ module.exports = function(grunt) {
 
     jshint: {
       // define the files to lint
-      files: ['Gruntfile.js', 'src/**/*.js'],
+      files: ['Gruntfile.js', 'src/*.js', 'src/lvls/*.js'],
       // configure JSHint (documented at http://www.jshint.com/docs/)
       options: {
+        esversion: 6,
+        eqeqeq: true,
+        latedef: "nofunc",
+        maxstatements: 100,
+
         // more options here if you want to override JSHint defaults
         globals: {
           jQuery: true,
           console: true,
-          module: true
+          module: true,
+          global: true,
+          fabric: true,
+          window: true,
+          screen: true,
         }
       }
     },

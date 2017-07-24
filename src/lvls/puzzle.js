@@ -117,17 +117,17 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
   },
 
   checkNumberOfParticlesType: function(checkpid, number) {
-	return (number == this.current_state.reduce(function(sum, edge) {
-		return sum + ( edge.pid == checkpid );	
+	return (number === this.current_state.reduce(function(sum, edge) {
+		return sum + ( edge.pid === checkpid );	
 	}, 0));
   },
 
   checkNumberOfEdges: function(number) {
-	return (this.current_state.length == number);
+	return (this.current_state.length === number);
   },
   
   checkNumberOfNodes: function(number) {		// MUST call genNodesList first!!!
-	return (this.nodes_list.length == number);
+	return (this.nodes_list.length === number);
   },
 
 	// Functions for editing the diagram
@@ -144,7 +144,7 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
 
   removeNode: function(nodeid) {
 	this.current_state = this.current_state.filter(function(edge) {
-		return (edge.start != nodeid); 
+		return (edge.start !== nodeid); 
 		//neither end of edge is at node
 	});
   },
@@ -165,22 +165,22 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
 	//console.log(edge.toString());
 		/* jshint ignore:start */
 	var startnodematch = this.nodes_list.reduce(function(sofar,nod,ind) {
-		return sofar + ((nod.id == ಠ_ಠ.start)? ind + 1 : 0);
+		return sofar + ((nod.id === ಠ_ಠ.start)? ind + 1 : 0);
 	}, 0);	// if the start node of the edge is already in the node list,
 		/* jshint ignore:end */
 	if (startnodematch) 	{ 
 			//console.log(this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id));
-			if (this.nodes_list[startnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) == -1) {
+			if (this.nodes_list[startnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) === -1) {
 					this.nodes_list[startnodematch-1].addEdge(ಠ_ಠ.id);
 				}}
 	else			{ this.nodes_list.push(new Node(ಠ_ಠ.start,[ಠ_ಠ.id])); }
 		/* jshint ignore:start */	
 	var endnodematch = this.nodes_list.reduce(function(sofar,nod,ind) {
-		return sofar + ((nod.id == ಠ_ಠ.end)? ind + 1 : 0);
+		return sofar + ((nod.id === ಠ_ಠ.end)? ind + 1 : 0);
 	}, 0);	// if the end node of the edge is already in the node list,
 		/* jshint ignore:end */
 	if (endnodematch) 	{ 
-			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) == -1) { 
+			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) === -1) { 
 					this.nodes_list[endnodematch-1].addEdge(ಠ_ಠ.id);
 				}}
 	else			{ this.nodes_list.push(new Node(ಠ_ಠ.end,[ಠ_ಠ.id],0,0)); }

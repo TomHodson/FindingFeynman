@@ -1,5 +1,3 @@
-
-
 function afterAssetsLoaded(global) {
   console.log("Loaded assets: ", global.assets);
   // for (var a in global.assets) {
