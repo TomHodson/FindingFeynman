@@ -4,24 +4,24 @@ function afterAssetsLoaded(global) {
   //   global.canvas.add(global.assets[a]).renderAll();
   // }
   global.pages.startPage = new StartPage({
-                              global: global,
-                              name: "startPage",
-                              });
+    global: global,
+    name: "startPage",
+  });
 
   global.pages.menuPage = new MenuPage({
-                              global : global,
-                              name: "menuPage",
-                              });
+    global: global,
+    name: "menuPage",
+  });
 
   global.pages.level1 = new Level1({
-                              global : global,
-                              name: "level1",
-                              });
+    global: global,
+    name: "level1",
+  });
 
   global.pages.smPage = new SMPage({
-                              global : global,
-                              name: "smPage",
-                              });
+    global: global,
+    name: "smPage",
+  });
 
   global.pages.startPage.enter();
 }
@@ -58,6 +58,4 @@ function main() {
 }
 
 //this is the entry point to all the code, ever.
-window.onload=main;
-
-
+window.onload = main;

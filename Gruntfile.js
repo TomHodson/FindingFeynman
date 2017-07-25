@@ -3,12 +3,12 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    
+
     uglify: {
       options: {
-        sourceMap : true,
-        sourceMapIncludeSources : true,
-        sourceMapIn : 'dist/<%= pkg.name %>.js.map',
+        sourceMap: true,
+        sourceMapIncludeSources: true,
+        sourceMapIn: 'dist/<%= pkg.name %>.js.map',
         // the banner is inserted at the top of the output
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       options: {
         // define a string to put between each file in the concatenated output
         separator: '\n',
-        sourceMap : true,
+        sourceMap: true,
       },
       dist: {
         // the files to concatenate
@@ -60,29 +60,27 @@ module.exports = function(grunt) {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint', 'concat', 'uglify']
     },
-    
+
     svgmin: {
-        options: {
-            plugins: [{
-                removeViewBox: false
-            }]
-        },
-        dist: {
-        files: [
-          {
-            expand: true,     // Enable dynamic expansion.
-            cwd: 'assets/',      // Src matches are relative to this path.
-            src: ['**/*.svg'], // Actual pattern(s) to match.
-            dest: 'dist/assets/',   // Destination path prefix.
-            ext: '.svg',   // Dest filepaths will have this extension.
-            extDot: 'first'   // Extensions in filenames begin after the first dot
-          },
-        ],
-        }
+      options: {
+        plugins: [{
+          removeViewBox: false
+        }]
+      },
+      dist: {
+        files: [{
+          expand: true, // Enable dynamic expansion.
+          cwd: 'assets/', // Src matches are relative to this path.
+          src: ['**/*.svg'], // Actual pattern(s) to match.
+          dest: 'dist/assets/', // Destination path prefix.
+          ext: '.svg', // Dest filepaths will have this extension.
+          extDot: 'first' // Extensions in filenames begin after the first dot
+        }, ],
+      }
     }
   });
 
-  
+
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');

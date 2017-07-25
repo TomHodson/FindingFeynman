@@ -22,19 +22,19 @@ var Page = fabric.util.createClass({
   //move from one page to another (maybe srcPage could just be 'this' I don't know yet)
   moveTo: function(global, srcPage, destPage) {
     return function() {
-        console.log("going to from " + srcPage + " to " + destPage);
-        global.pages[srcPage].exit();
-        global.pages[destPage].enter();
+      console.log("going to from " + srcPage + " to " + destPage);
+      global.pages[srcPage].exit();
+      global.pages[destPage].enter();
     };
   },
 
   addToCanvas: function() {
     //prevent it from rerendering the page for each loop iteration
-    this.global.canvas.renderOnAddRemove=false;
+    this.global.canvas.renderOnAddRemove = false;
     for (var key in this.assets) {
       this.global.canvas.add(this.assets[key]);
     }
-    
+
     //re-enable the default behaviour
     this.global.canvas.renderOnAddRemove = true;
     this.global.canvas.renderAll();
@@ -42,7 +42,7 @@ var Page = fabric.util.createClass({
 
   removeFromCanvas: function() {
     //prevent it from rerendering the page for each loop iteration
-    this.global.canvas.renderOnAddRemove=false;
+    this.global.canvas.renderOnAddRemove = false;
     for (var key in this.assets) {
       this.global.canvas.remove(this.assets[key]);
     }
@@ -64,18 +64,24 @@ var StartPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
+    this.assets = {
+      FFlogo: this.global.assets.FFlogo,
+      startButton: this.global.assets.startButton
+    };
 
-    this.assets.FFlogo.scale(Math.min(2/3*global.canvas.height/this.assets.FFlogo.height, 1.0*global.canvas.width/this.assets.FFlogo.width));
-    this.assets.FFlogo.set({originX: 'center', originY: 'center',
-                            top : this.global.canvas.height/3,
-                            left : this.global.canvas.width/2,
-                          });
+    this.assets.FFlogo.scale(Math.min(2 / 3 * global.canvas.height / this.assets.FFlogo.height, 1.0 * global.canvas.width / this.assets.FFlogo.width));
+    this.assets.FFlogo.set({
+      originX: 'center',
+      originY: 'center',
+      top: this.global.canvas.height / 3,
+      left: this.global.canvas.width / 2,
+    });
 
-    this.assets.startButton.scale(Math.min(1/10*global.canvas.height/this.assets.startButton.height, 0.7*global.canvas.width/this.assets.startButton.width));
+    this.assets.startButton.scale(Math.min(1 / 10 * global.canvas.height / this.assets.startButton.height, 0.7 * global.canvas.width / this.assets.startButton.width));
     this.assets.startButton.set({
-      originX: 'center', originY: 'center',
-      top: global.canvas.height * 4/5,
+      originX: 'center',
+      originY: 'center',
+      top: global.canvas.height * 4 / 5,
       left: global.canvas.width / 2,
     });
 
@@ -101,8 +107,8 @@ var MenuPage = fabric.util.createClass(Page, {
   formatAssets: function() {
     this.assets = {
       menuLabel: this.global.assets.menuLabel,
-      menuPath: this.global.assets.menuPath, 
-      level1: this.global.assets.level1, 
+      menuPath: this.global.assets.menuPath,
+      level1: this.global.assets.level1,
       // level2: this.global.assets.level2,
       // level3: this.global.assets.level3,
       // level4: this.global.assets.level4,
@@ -116,61 +122,61 @@ var MenuPage = fabric.util.createClass(Page, {
       level12: this.global.assets.level12,
     };
 
-    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width * 0.5) {
       this.assets.menuLabel.scale(0.5);
       this.assets.menuLabel.set({
-        top: this.assets.menuLabel.height*0.1*0.5,
-        left: this.global.canvas.getWidth()*0.5-this.assets.menuLabel.width*0.5*0.5,
+        top: this.assets.menuLabel.height * 0.1 * 0.5,
+        left: this.global.canvas.getWidth() * 0.5 - this.assets.menuLabel.width * 0.5 * 0.5,
       });
       console.log("canvas too big!");
     } else {
       this.assets.menuLabel.scaleToWidth(this.global.canvas.getWidth());
       this.assets.menuLabel.set({
-        top: this.assets.menuLabel.height*0.1*(this.global.canvas.getWidth()/this.assets.menuLabel.width),
+        top: this.assets.menuLabel.height * 0.1 * (this.global.canvas.getWidth() / this.assets.menuLabel.width),
       });
     }
 
-    if (this.global.canvas.getWidth() > this.assets.menuPath.width*0.5) {
+    if (this.global.canvas.getWidth() > this.assets.menuPath.width * 0.5) {
       this.assets.menuPath.scale(0.5);
       this.assets.menuPath.set({
-        top: this.assets.menuLabel.height*1.3*0.5,
-        left: this.global.canvas.getWidth()*0.5-this.assets.menuPath.width*0.5*0.5,
+        top: this.assets.menuLabel.height * 1.3 * 0.5,
+        left: this.global.canvas.getWidth() * 0.5 - this.assets.menuPath.width * 0.5 * 0.5,
       });
       console.log("canvas too big!");
     } else {
       this.assets.menuPath.scaleToWidth(this.global.canvas.getWidth());
       this.assets.menuPath.set({
-        top: this.assets.menuPath.height*0.1*(this.global.canvas.getWidth()/this.assets.menuPath.width),
+        top: this.assets.menuPath.height * 0.1 * (this.global.canvas.getWidth() / this.assets.menuPath.width),
       });
     }
 
     this.assets.level1.setFill('white');
-    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width * 0.5) {
       this.assets.level1.scale(0.5);
       this.assets.level1.set({
-        top: this.assets.menuLabel.height*1.1*0.5,
-        left: this.global.canvas.getWidth()*0.5-this.assets.menuPath.width*0.5*0.5,
+        top: this.assets.menuLabel.height * 1.1 * 0.5,
+        left: this.global.canvas.getWidth() * 0.5 - this.assets.menuPath.width * 0.5 * 0.5,
       });
       console.log("canvas too big!");
     } else {
-      this.assets.level1.scale(this.global.canvas.getWidth()/this.assets.menuLabel.width);
+      this.assets.level1.scale(this.global.canvas.getWidth() / this.assets.menuLabel.width);
       this.assets.level1.set({
-        top: this.assets.level1.height*0.1*(this.global.canvas.getWidth()/this.assets.level1.width),
+        top: this.assets.level1.height * 0.1 * (this.global.canvas.getWidth() / this.assets.level1.width),
       });
     }
 
     this.assets.level12.setFill('white');
-    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width * 0.5) {
       this.assets.level12.scale(0.5);
       this.assets.level12.set({
-        top: this.assets.menuLabel.height*1.1*0.5+this.assets.menuPath.height*0.5*0.8,
-        left: this.global.canvas.getWidth()*0.5+this.assets.menuPath.width*0.5*0.3,
+        top: this.assets.menuLabel.height * 1.1 * 0.5 + this.assets.menuPath.height * 0.5 * 0.8,
+        left: this.global.canvas.getWidth() * 0.5 + this.assets.menuPath.width * 0.5 * 0.3,
       });
       console.log("canvas too big!");
     } else {
-      this.assets.level12.scale(this.global.canvas.getWidth()/this.assets.menuLabel.width);
+      this.assets.level12.scale(this.global.canvas.getWidth() / this.assets.menuLabel.width);
       this.assets.level12.set({
-        top: this.assets.level1.height*0.1*(this.global.canvas.getWidth()/this.assets.level12.width),
+        top: this.assets.level1.height * 0.1 * (this.global.canvas.getWidth() / this.assets.level12.width),
       });
     }
 
@@ -185,5 +191,3 @@ var MenuPage = fabric.util.createClass(Page, {
   },
 
 });
-
-

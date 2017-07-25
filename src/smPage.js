@@ -9,7 +9,9 @@ var SMPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.assets = { smImage: this.global.assets.smImage };
+    this.assets = {
+      smImage: this.global.assets.smImage
+    };
 
     this.assets.smImage.scaleToWidth(window.innerWidth);
 
@@ -17,6 +19,3 @@ var SMPage = fabric.util.createClass(Page, {
 
   },
 });
-
-
-

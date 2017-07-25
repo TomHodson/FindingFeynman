@@ -51,51 +51,60 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     {url: "SquiggleIcon.svg", name: "squiggle"},
     ];
 
-    var width = 0.3*Math.min(global.canvas.width, global.canvas.height);
-    var height = width/10;
-    var pad = width/10;
+    var width = 0.3 * Math.min(global.canvas.width, global.canvas.height);
+    var height = width / 10;
+    var pad = width / 10;
 
-    var loadBar = new fabric.Rect({originY: 'center', fill: 'orange',
-                                    left: pad, height: height, width: width,
-                                    });
-    var bg = new fabric.Rect({originY: 'center', fill: 'black',
-                        width: width+2*pad, height: height+pad*2,
-                            });
+    var loadBar = new fabric.Rect({
+      originY: 'center',
+      fill: 'orange',
+      left: pad,
+      height: height,
+      width: width,
+    });
+    var bg = new fabric.Rect({
+      originY: 'center',
+      fill: 'black',
+      width: width + 2 * pad,
+      height: height + pad * 2,
+    });
     var bar = new fabric.Group([bg, loadBar]);
     global.canvas.add(bar);
     bar.center();
-    loadBar.finalWidth = Math.round(global.canvas.width/3);
+    loadBar.finalWidth = Math.round(global.canvas.width / 3);
     loadBar.N = global.assets_to_load.length;
 
     global.assets = {};
-    function recurse_on_assets(global, assets_to_load) {
-    //pop an asset of the list, removing it
-    var asset = global.assets_to_load.pop();
 
-    loadBar.animate('width', loadBar.finalWidth * (1 - global.assets_to_load.length/loadBar.N), {
+    function recurse_on_assets(global, assets_to_load) {
+      //pop an asset of the list, removing it
+      var asset = global.assets_to_load.pop();
+
+      loadBar.animate('width', loadBar.finalWidth * (1 - global.assets_to_load.length / loadBar.N), {
         onChange: global.canvas.renderAll.bind(global.canvas),
         duration: 100,
         easing: fabric.util.ease.easeOutBounce,
       });
 
-    if(asset === undefined) {
-      console.log("got to the base case, calling afterAssetsLoaded");
-      global.canvas.remove(bar);
-      //now all the assets are loaded we can call the main function
-      function_to_run_after_assets_are_loaded(global);
-    }
-    //if there are still assets left to load
-    else {
-      fabric.loadSVGFromURL("dist/assets/" + asset.url, function(objs, opt) {
-        console.log("loaded asset " + asset.name);
-        var object = fabric.util.groupSVGElements(objs, opt);
-        
-        //make a new field on assets for this asset
-        global.assets[asset.name] = object;
+      if (asset === undefined) {
+        console.log("got to the base case, calling afterAssetsLoaded");
+        global.canvas.remove(bar);
+        //now all the assets are loaded we can call the main function
+        function_to_run_after_assets_are_loaded(global);
+      }
+      //if there are still assets left to load
+      else {
+        fabric.loadSVGFromURL("dist/assets/" + asset.url, function(objs, opt) {
+          console.log("loaded asset " + asset.name);
+          var object = fabric.util.groupSVGElements(objs, opt);
 
-        //this is the recursive part
-        recurse_on_assets(global, assets_to_load);
-      });}
+          //make a new field on assets for this asset
+          global.assets[asset.name] = object;
+
+          //this is the recursive part
+          recurse_on_assets(global, assets_to_load);
+        });
+      }
     }
     recurse_on_assets(global, global.assets_to_load);
-}
+    }
