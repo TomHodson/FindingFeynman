@@ -51,27 +51,43 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     {url: "SquiggleIcon.svg", name: "squiggle"},
     ];
 
-    var width = 0.3 * Math.min(global.canvas.width, global.canvas.height);
-    var height = width / 10;
-    var pad = width / 10;
+    //just use relative sizes and scale later
+    var width = Math.min(0.5*global.canvas.width, 1.0*global.canvas.height);
+    var height = Math.max(15, width / 50);
+    console.log(height);
+    var pad = height / 5;
+
+
+    var text = new fabric.Text('Loading', {
+      left: width/2, top: -height - 4*pad,
+      originX: 'center', originY: 'bottom',
+      textAlign: 'center'
+    });
+    text.scaleToHeight(3 * height);
+
 
     var loadBar = new fabric.Rect({
-      originY: 'center',
-      fill: 'orange',
+      originY: 'center', originX: 'left',
+      fill: 'white',
+      //stroke: "black", strokeWidth: pad,
       left: pad,
-      height: height,
-      width: width,
+      height: height, width: 0,
+      rx: pad, ry: pad,
     });
     var bg = new fabric.Rect({
-      originY: 'center',
+      originY: 'center', originX: 'left',
       fill: 'black',
+      left: 0,
+      rx: pad, ry: pad,
+      //stroke: "black", strokeWidth: pad,
       width: width + 2 * pad,
-      height: height + pad * 2,
+      height: height + 2 * pad,
     });
-    var bar = new fabric.Group([bg, loadBar]);
+
+    var bar = new fabric.Group([bg, loadBar, text]);
     global.canvas.add(bar);
     bar.center();
-    loadBar.finalWidth = Math.round(global.canvas.width / 3);
+    loadBar.finalWidth = width;
     loadBar.N = global.assets_to_load.length;
 
     global.assets = {};
@@ -95,12 +111,13 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
       //if there are still assets left to load
       else {
         fabric.loadSVGFromURL("dist/assets/" + asset.url, function(objs, opt) {
-          console.log("loaded asset " + asset.name);
           var object = fabric.util.groupSVGElements(objs, opt);
+          console.log("loaded asset " + asset.name, object.type);
 
           //make a new field on assets for this asset
-          global.assets[asset.name] = object;
-
+          //note we're converting from a PathGroup object to a Group
+          //not sure which is better
+          global.assets[asset.name] = new fabric.Group(object);
           //this is the recursive part
           recurse_on_assets(global, assets_to_load);
         });
