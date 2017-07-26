@@ -12,8 +12,13 @@ var SMPage = fabric.util.createClass(Page, {
     this.assets = {
       smImage: this.global.assets.smImage
     };
+    this.assets.smImage.scaleToMaxXY(global.canvas, {width: 0.9, height: 1});
+    this.assets.smImage.set({
+      originX: "center", originY: "top",
+      top: 0, left: global.canvas.width/2,
+    });
 
-    this.assets.smImage.scaleToWidth(window.innerWidth);
+    console.log(this.assets.smImage);
 
     this.assets.smImage.on("mousedown", this.moveTo(this.global, "smPage", "menuPage"));
 
