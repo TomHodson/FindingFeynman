@@ -118,7 +118,8 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
           //note we're converting from a PathGroup object to a Group
           //not sure which is better
           //UPDATE: PathGroups seem to have an issue with calculating their bounding boxes
-          global.assets[asset.name] = new fabric.Group(object);
+          //2: casting to normal groups like new fabric.Group(object) doesn't work
+          global.assets[asset.name] = object;
           //this is the recursive part
           recurse_on_assets(global, assets_to_load);
         });
